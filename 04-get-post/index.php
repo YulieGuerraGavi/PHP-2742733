@@ -1,4 +1,5 @@
 <?php
+//comentario nuevo
 //superglobals GET y POST
 
 
