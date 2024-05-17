@@ -9,12 +9,12 @@
 
 <body>
 
-    <form action="ejersicio4.php" method="post">
+    <form action="ejercicio-04.php" method="post">
         <label for="metros">metros</label>
         <input id="metros" type="number" placeholder="metros" name="metros">
         <br>
 
-        <label for="pared">cotizacion</label>
+        <label for="pared">pared</label>
         <input id="pared" type="texto" placeholder="lisa/nolisa" required name="pared">
         <br>
 

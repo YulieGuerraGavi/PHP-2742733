@@ -9,7 +9,7 @@
 
 <body>
 
-    <form action="calcular_salario.php" method="post">
+    <form action="ejercicio-03.php" method="post">
         <label for="numero1">primer numero</label><br>
         <input type="number" id="numero1" name="numero1" required><br>
 
@@ -42,6 +42,6 @@ if ($numero2 > $mayor) {
 
 if ($numero3 > $mayor) {
     $mayor = $numero3;
-    echo "El mayor es: ". $mayor;
+    echo "El mayor es: $mayor " ;
 }
 ?>
