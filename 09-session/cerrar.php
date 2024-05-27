@@ -13,7 +13,7 @@ session_destroy();
     <title>Document</title>
 </head>
 <body>
-<h1>Pagina de inicio, sesión inicializada</h1>
+<h1> Sesión inicializada</h1>
     <a href="./user.php">user page</a>
     <a href="./cerrar.php">cerrar</a>
 </body>
