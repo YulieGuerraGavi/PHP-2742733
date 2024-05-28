@@ -4,22 +4,42 @@ session_start();
 
 //$_SESSION['nombre'] =$_POST['user'];
 //$_SESSION['contraseña'] =$_POST['password']
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo 'Datos enviados';
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+    echo 'datos enviadoshbjhj';
+    
     echo '<br>';
-    $usuario = $_POST['user'];
-    $password = $_POST['password'];
-    //para verificar que se envien todos los datos 
-    if (empty($usuario) or empty($password)) {
-        echo 'Rellene completo el registro';
-    } else {
-        echo $usuario . ' - ' . $password;
-        $_SESSION['userRegister'] = $usuario;
-        $_SESSION['passRegister'] = $password;
-        //echo '-Variables de sesion guerdadas 🤫';
-        //sirve para enviarte a otra pagina: header('location: index.php');
-    }
+            $usuario = $_POST['user'];
+            $password = $_POST['password'];
+            $email = $_POST['email'];
+            
+            
+            if( empty($usuario) or empty($password) or empty ($email) ){
+                echo 'rellene completo el formulario';
+            }else{
+                //echo $usuario . ' - ' . $password;
+                $_SESSION['userRegister'] = $usuario;
+                $_SESSION['passRegister'] = $password;
+                $_SESSION['emailRegister'] = $email;
+
+                //echo ' - variables de sesion guardadas🥶';
+                //header('location: index.php');
+                
+                try {
+                    $conexion = new PDO("mysql: host=localhost; dbname=focaapp;", 'root','');
+                    echo "conexion OK";
+                } catch (PDOException $e) {
+                   echo "Error: " . $e->getMessage();
+                }
+
+               
+
+                 $statement = $conexion->prepare("INSERT INTO `userapp`( `ID`, `username`, `correo`, `contraseña`) VALUES (NULL, :username, :pass ,:correo)");
+
+              
+                $statement->execute(array(":username"=>$usuario, ":pass"=>$password, ":correo"=>$email)); 
+
 }
 
 
@@ -45,17 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" placeholder="user" name="user">
         <label for="password">contraseña</label>
         <input type="text" placeholder="password" name="password">
+        <label for="email">correo</label>
+        <input type="email" placeholder="email" name="email">
         <button type="submit">Registrate</button>
 
     </form>
 
-    <?php if ( isset($_SESSION['userRegister'])) : ?>
+    <?php if (isset($_SESSION['userRegister'])) : ?>
         <p>Datos registrados, ya puedes iniciar sesión </p>
         <p> <?php echo $_SESSION['userRegister'] . ' - ' . $_SESSION['passRegister']; ?> </p>
         <a href="index.php">Iniciar sesión</a>
     <?php endif ?>
 
-    
+
 </body>
 
 </html>
