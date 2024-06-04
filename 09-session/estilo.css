@@ -1,0 +1,73 @@
+.namvar{
+    display: flex;
+    flex-direction: column;
+    
+}
+.modal-content{
+    background-color: rgba(39, 45, 58, 1);
+    color: white;
+    margin-top: 6rem;
+    box-shadow: -20px -20px rgba(68, 78, 102, 0.719);
+
+} 
+
+
+
+.btn-close {
+    background-image: url(./imagenes/icons8-x-52.png);
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.cont{
+    display: flex;
+   justify-content: center;
+    margin-top: 1rem;
+}
+.facebook{
+    height: 3.5rem;
+    width: 3.5rem;
+    margin-top: 1rem;
+    margin-right: -8rem;
+}
+
+.google{
+   display: flex;
+   justify-content: center;
+    height: 3rem;
+    width:3rem ;
+    margin-top: 1rem;
+    margin-right: -10rem;
+    
+}
+
+.texto{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+
+}
+
+.fondoy{
+    border-radius: 2rem;
+    height: 6rem;
+    width:29rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ingresar{
+    border-radius: 2rem; 
+    height: 3rem; 
+   
+}
+
+.boton{
+    border-radius: 2rem; 
+    height: 2.5rem;
+    width:17rem;
+}
+
+
+.modal-backdrop {
+    z-index: auto;
+}

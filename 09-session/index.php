@@ -1,53 +1,62 @@
 <?php session_start();
 
-//session_start(); //inicializa una sesion 
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $usuario = $_POST['user'];
     $password = $_POST['password'];
-    $user_register = isset($_SESSION['userRegister'] ) ? $_SESSION['userRegister'] : null;
-    $pass_register = isset($_SESSION['passRegister'] ) ? $_SESSION['passRegister'] : null;
-    //para verificar que se envien todos los datos 
+    $correo = $_POST['correo'];
+
+
+    $user_register = isset($_SESSION['userRegister']) ? $_SESSION['userRegister'] : null;
+    $pass_register = isset($_SESSION['passRegister']) ? $_SESSION['passRegister'] : null;
+
+    //Para verificar que se envíen todos los datos
     if (empty($usuario) or empty($password)) {
-        echo 'Rellene completo el registro';
+        echo 'Rellene completo el formulario';
     } else {
-       /*  echo $usuario . ' - ' . $password;
-        if( $usuario ==  $user_register && $password == $pass_register){
-            echo'-listo, iniciaste sesión 🥴';
-            header('location: user.php');
-        } else{
-            echo'-Tu usuario no existe';
-        } */
+
         try {
-            $conexion = new PDO("mysql: host=localhost; dbname=focaapp;", 'root', '');
-            echo "conexion OK";
+            $conexion = new PDO("mysql: host=localhost; dbname=focaapp", 'root', '');
+            echo "Conexión OK";
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            echo 'Error: ' . $e->getMessage();
         }
-    
-    
-    
-        $statement = $conexion->prepare("SELECT * FROM usersapp
-        WHERE username = :nombre AND password = :password");
-    
-    
-        $statement->execute(array(":nombre" => $usuario, ":password" => $password));
+
+        $statement = $conexion->prepare("SELECT * FROM `userapp` WHERE username = :user AND password = :pass");
+
+        $statement->execute(array(':user' => $usuario, ':pass' => $password));
 
         $result = $statement->fetch();
 
-        if($result){
+        if ($result) {
             echo 'true';
             $_SESSION['userRegister'] = $usuario;
-            $_SESSION['userRegister'] = $password;
+            $_SESSION['passRegister'] = $password;
             header('Location: user.php');
-        } 
-        else {echo 'false';}
+        } else {echo 'false';}
 
 
+        /* if( count($result) ){
+            echo 'usuario encontrado';
+            print_r($result);
+        }else{
+            echo 'no se encontró user';
+        } */
+
+
+
+        /*  foreach ($result as $item) {
+            print_r($result);
+        } */
+
+        //echo $usuario . ' - ' . $password;
+        /* if( $usuario == $user_register && $password == $pass_register ){
+            echo 'listo, iniciaste sesión 😊';
+            header('Location: user.php');
+        }else{
+            echo 'Tu usuario no existe 😖';
+        } */
     }
 }
-
-
-
 
 ?>
 
@@ -61,17 +70,15 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
-    <h1>Pagina de inicio, sesion inicializada</h1>
 
+    <h1>Página de inicio</h1>
 
-
-    <form action="index.php" method="post">
-        <label for="user">usuario</label>
-        <input type="text" placeholder="user" name="user">
-        <label for="password">contraseña</label>
-        <input type="text" placeholder="password" name="password">
-        <button type="submit">Iniciar sesión</button>
-
+    <form action="index.php" method="POST">
+        <label for="user">User</label>
+        <input type="text" placeholder="User" name="user">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" name="password">
+        <button type="submit">Inicio sesión</button>
     </form>
 
     <a href="./registro.php">Registrate</a>
