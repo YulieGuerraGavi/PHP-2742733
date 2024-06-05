@@ -5,11 +5,15 @@
 #2. Columnas: ID,username, correo, contraseña
 #3. en registro.php conectar con base de datos y hacer un ISERT INTO en la tabla 'usersapp' cuando le den click en registrarse
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $usuario = $_POST['user'];
     $password = $_POST['password'];
     $correo = $_POST['correo'];
+
+    echo 'user' . '"' . $usuario . '"';
 
     //Para verificar que se envíen todos los datos
     if (empty($usuario) or empty($password) or empty($correo)) {
@@ -58,14 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 
-<body>
-    <nav class="navbar    ">
-        <div class="container-fluid">
-            
+<body style="background-color: #000913;">
+
+    <nav class="navbar navbar-expand-lg  fixed-top " >
+        <div class="container-fluid center">
 
 
-
-            <div class="center">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Registro
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
 
                     <div class="modal-content">
@@ -75,45 +81,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-body">
 
-                            <h5>Usuario</h5>
+
                             <form action="registro.php" method="POST">
+                                <h5>Usuario</h5>
                                 <label for="user"></label>
                                 <input class="ingresar form-control me-2" type="text" placeholder="User" name="user">
-                            </form>
 
-                            <h5>Contraseña</h5>
-                            <form action="registro.php" method="POST">
+                                <h5>Contraseña</h5>
+
                                 <label for="correo"></label>
                                 <input class="ingresar form-control me-2" type="email" placeholder="Correo" name="correo">
-                            </form>
 
-                            <h5>Correo</h5>
-                            <form action="registro.php" method="POST">
+
+                                <h5>Correo</h5>
+
                                 <label for="password"></label>
                                 <input class="ingresar form-control me-2" type="password" placeholder="Password" name="password">
 
-                            </form>
+<!-- 
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col align-self-start">
 
-                            <?php if (isset($_SESSION['userRegister'])) : ?>
-                                <p>Datos registrados, ya puedes iniciar sesión</p>
-                                <p> <?php echo $_SESSION['userRegister'] . ' - ' . $_SESSION['passRegister'];  ?> </p>
-                                <a href="index.php">Iniciar sesión</a>
-                            <?php endif ?>
+                                        </div>
+                                        <div class="col align-self-center">
+                                            <button class=" boton cont btn btn-outline-success" type="submit">Continuar</button>
+                                        </div>
+                                        <div class="col align-self-end">
 
-                            <div class="container text-center">
-                                <div class="row">
-                                    <div class="col align-self-start">
-
+                                        </div>
                                     </div>
-                                    <div class="col align-self-center">
-                                        <button class=" boton cont btn btn-outline-success" type="submit">Continuar</button>
-                                    </div>
-                                    <div class="col align-self-end">
+                                </div> -->
 
-                                    </div>
-                                </div>
-                            </div>
-                            <form action="registro.php" method="POST">
                                 <div class="container text-center">
                                     <div class="row">
                                         <div class="col align-self-start">
@@ -130,6 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </form>
 
 
+                            <?php if (isset($_SESSION['userRegister'])) : ?>
+                                <p>Datos registrados, ya puedes iniciar sesión</p>
+                                <p> <?php echo $_SESSION['userRegister'] . ' - ' . $_SESSION['passRegister'];  ?> </p>
+                                <a href="index.php">Iniciar sesión</a>
+                            <?php endif ?>
 
                         </div>
                         <h6 class="texto">Al continuar, acepta términos y condiciones</h6>
@@ -142,8 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </div>
     </nav>
-
-
 
 </body>
 

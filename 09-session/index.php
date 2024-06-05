@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $password = $_POST['password'];
     $correo = $_POST['correo'];
 
-
     $user_register = isset($_SESSION['userRegister']) ? $_SESSION['userRegister'] : null;
     $pass_register = isset($_SESSION['passRegister']) ? $_SESSION['passRegister'] : null;
 
@@ -32,7 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $_SESSION['userRegister'] = $usuario;
             $_SESSION['passRegister'] = $password;
             header('Location: user.php');
-        } else {echo 'false';}
+        } else {
+            echo 'false';
+        }
 
 
         /* if( count($result) ){
@@ -82,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </form>
 
     <a href="./registro.php">Registrate</a>
+   
 
 
 </body>
